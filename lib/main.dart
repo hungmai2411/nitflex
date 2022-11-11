@@ -15,9 +15,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Niflex',
-      theme: ThemeData(
-        scaffoldBackgroundColor: ColorPalette.backgroundScaffoldColor,
-      ),
+      // theme: ThemeData(
+      //   scaffoldBackgroundColor: ColorPalette.backgroundScaffoldColor,
+      // ),
+      themeMode: ThemeMode.system,
+      darkTheme: ColorPalette.darkTheme,
+      theme: ColorPalette.lightTheme,
       routes: routes,
       onGenerateRoute: generateRoutes,
       debugShowCheckedModeBanner: false,

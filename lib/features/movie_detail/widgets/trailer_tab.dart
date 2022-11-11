@@ -10,15 +10,16 @@ class TrailerTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: const EdgeInsets.only(top: kDefaultPadding),
-      itemBuilder: (BuildContext context, int index) {
-        return ItemNotification(
-          movie: movies[index],
-          margin: const EdgeInsets.only(bottom: kDefaultPadding),
-        );
-      },
-      itemCount: movies.length,
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          return ItemNotification(
+            movie: movies[index],
+            margin: const EdgeInsets.only(bottom: kDefaultPadding),
+          );
+        },
+        childCount: movies.length,
+      ),
     );
   }
 }

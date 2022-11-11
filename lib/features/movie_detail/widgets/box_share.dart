@@ -11,6 +11,16 @@ class BoxShare extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (MediaQuery.of(context).platformBrightness == Brightness.dark) {
+      ColorPalette.textColor = Colors.white;
+      print('dark');
+    } else {
+      ColorPalette.textColor = const Color(0xFF212121);
+      ColorPalette.backgroundScaffoldColor = Colors.white;
+      ColorPalette.boxSearchColor = const Color(0xFFF5F5F4);
+      print('white');
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: kBottomBarIconSize,
@@ -24,8 +34,8 @@ class BoxShare extends StatelessWidget {
                 TextStyles.defaultStyle.semibold.whiteTextColor.setTextSize(20),
           ),
           const SizedBox(height: kMinPadding),
-          const Divider(
-            color: ColorPalette.unratedColor,
+          Divider(
+            color: ColorPalette.textColor.withOpacity(0.3),
           ),
           const SizedBox(height: kMinPadding),
           Expanded(

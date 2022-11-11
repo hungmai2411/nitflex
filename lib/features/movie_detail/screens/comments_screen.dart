@@ -26,6 +26,16 @@ class _CommentsScreenState extends State<CommentsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (MediaQuery.of(context).platformBrightness == Brightness.dark) {
+      ColorPalette.textColor = Colors.white;
+      print('dark');
+    } else {
+      ColorPalette.textColor = const Color(0xFF212121);
+      ColorPalette.backgroundScaffoldColor = Colors.white;
+      ColorPalette.boxSearchColor = const Color(0xFFF5F5F4);
+      print('white');
+    }
+
     return Scaffold(
         body: CustomScrollView(
       slivers: [
@@ -33,7 +43,10 @@ class _CommentsScreenState extends State<CommentsScreen> {
           pinned: true,
           leading: GestureDetector(
             onTap: () => Navigator.pop(context),
-            child: const Icon(Icons.arrow_back_ios_rounded),
+            child: Icon(
+              Icons.arrow_back_ios_rounded,
+              color: ColorPalette.textColor,
+            ),
           ),
           automaticallyImplyLeading: false,
           backgroundColor: ColorPalette.backgroundScaffoldColor,
@@ -82,15 +95,15 @@ class _CommentsScreenState extends State<CommentsScreen> {
                   height: 150.0,
                   padding: const EdgeInsets.all(kMediumPadding),
                   margin: const EdgeInsets.only(top: 6.0),
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.vertical(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.vertical(
                       top: Radius.circular(30.0),
                     ),
-                    color: Color(0xFF18191F),
+                    color: ColorPalette.backgroundScaffoldColor,
                     boxShadow: [
                       BoxShadow(
-                        color: ColorPalette.dividerColor,
-                        offset: Offset(1.0, 1.0),
+                        color: ColorPalette.textColor.withOpacity(0.5),
+                        offset: const Offset(1.0, 1.0),
                         blurRadius: 5.0,
                       ),
                     ],
@@ -106,7 +119,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
                       Container(
                         width: 45,
                         height: 45,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           color: ColorPalette.primaryColor,
                           shape: BoxShape.circle,
                         ),

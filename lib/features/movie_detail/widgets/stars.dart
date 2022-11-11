@@ -21,7 +21,7 @@ class Stars extends StatelessWidget {
       unratedColor: ColorPalette.unratedColor,
       itemSize: 15,
       itemBuilder: (BuildContext context, _) {
-        return const Icon(
+        return Icon(
           Icons.star,
           color: ColorPalette.primaryColor,
         );

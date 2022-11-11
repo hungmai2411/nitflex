@@ -28,8 +28,8 @@ class BoxSearch extends StatelessWidget {
         hintStyle: TextStyles.defaultStyle.setColor(
           ColorPalette.unratedColor,
         ),
-        prefixIcon: const Padding(
-          padding: EdgeInsets.all(8.0),
+        prefixIcon: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Icon(
             FontAwesomeIcons.magnifyingGlass,
             color: ColorPalette.unratedColor,
@@ -37,7 +37,7 @@ class BoxSearch extends StatelessWidget {
           ),
         ),
         filled: true,
-        fillColor: const Color(0xFF1E222A),
+        fillColor: ColorPalette.boxSearchColor,
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(
@@ -46,9 +46,9 @@ class BoxSearch extends StatelessWidget {
             ),
           ),
         ),
-        focusedBorder: const OutlineInputBorder(
+        focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: ColorPalette.primaryColor),
-          borderRadius: BorderRadius.all(
+          borderRadius: const BorderRadius.all(
             Radius.circular(
               kItemPadding,
             ),
@@ -57,7 +57,7 @@ class BoxSearch extends StatelessWidget {
         contentPadding: const EdgeInsets.symmetric(horizontal: kItemPadding),
       ),
       style: TextStyles.defaultStyle.setColor(
-        ColorPalette.unratedColor,
+        ColorPalette.textColor,
       ),
       onChanged: (value) {
         onChanged(value);

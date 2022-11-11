@@ -106,7 +106,7 @@ class ItemNotification extends StatelessWidget {
               child: Text(
                 movie.dateTime,
                 style: TextStyles.defaultStyle.medium.setTextSize(13).setColor(
-                      ColorPalette.unratedColor,
+                      ColorPalette.textColor.withOpacity(0.5),
                     ),
               ),
             ),

@@ -18,43 +18,43 @@ class CommentsTab extends StatelessWidget {
       Navigator.pushNamed(context, CommentsScreen.routeName);
     }
 
-    return Column(
-      children: [
-        const SizedBox(height: kTopPadding),
-        Row(
-          children: [
-            Text(
-              '24.6K Comments',
-              style:
-                  TextStyles.defaultStyle.bold.whiteTextColor.setTextSize(15),
-            ),
-            const Spacer(),
-            GestureDetector(
-              onTap: navigateToCommentsScreen,
-              child: Text(
-                'See all',
-                style: TextStyles.defaultStyle.medium
-                    .setColor(ColorPalette.primaryColor)
-                    .setTextSize(15),
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          if (index == 0) {
+            return Padding(
+              padding: const EdgeInsets.only(
+                  bottom: kDefaultPadding, top: kTopPadding),
+              child: Row(
+                children: [
+                  Text(
+                    '24.6K Comments',
+                    style: TextStyles.defaultStyle.bold.whiteTextColor
+                        .setTextSize(15),
+                  ),
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: navigateToCommentsScreen,
+                    child: Text(
+                      'See all',
+                      style: TextStyles.defaultStyle.medium
+                          .setColor(ColorPalette.primaryColor)
+                          .setTextSize(15),
+                    ),
+                  )
+                ],
               ),
-            )
-          ],
-        ),
-        Expanded(
-          child: ListView.builder(
-            padding: const EdgeInsets.only(top: kDefaultPadding),
-            itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: kMediumPadding),
-                child: ItemComment(
-                  comment: comments[index],
-                ),
-              );
-            },
-            itemCount: comments.length,
-          ),
-        ),
-      ],
+            );
+          }
+          return Padding(
+            padding: const EdgeInsets.only(bottom: kMediumPadding),
+            child: ItemComment(
+              comment: comments[index - 1],
+            ),
+          );
+        },
+        childCount: comments.length + 1,
+      ),
     );
   }
 }

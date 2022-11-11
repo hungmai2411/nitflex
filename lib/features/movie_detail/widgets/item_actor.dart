@@ -32,9 +32,12 @@ class ItemActor extends StatelessWidget {
               ),
             ),
             const SizedBox(height: kMinPadding),
-            Text(actor.role,
-                style: TextStyles.defaultStyle.medium
-                    .setColor(ColorPalette.unratedColor)),
+            Text(
+              actor.role,
+              style: TextStyles.defaultStyle.medium.setColor(
+                ColorPalette.textColor.withOpacity(0.5),
+              ),
+            ),
           ],
         ),
       ],

@@ -25,16 +25,16 @@ class SendComment extends StatelessWidget {
         hintStyle: TextStyles.defaultStyle.setColor(
           ColorPalette.unratedColor,
         ),
-        suffixIcon: const Padding(
-          padding: EdgeInsets.all(8.0),
+        suffixIcon: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Icon(
             FontAwesomeIcons.faceSmile,
-            color: ColorPalette.unratedColor,
+            color: ColorPalette.textColor,
             size: 15,
           ),
         ),
         filled: true,
-        fillColor: const Color(0xFF1E222A),
+        fillColor: ColorPalette.boxSearchColor,
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(
@@ -43,9 +43,9 @@ class SendComment extends StatelessWidget {
             ),
           ),
         ),
-        focusedBorder: const OutlineInputBorder(
+        focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: ColorPalette.primaryColor),
-          borderRadius: BorderRadius.all(
+          borderRadius: const BorderRadius.all(
             Radius.circular(
               kItemPadding,
             ),
@@ -57,7 +57,7 @@ class SendComment extends StatelessWidget {
         ),
       ),
       style: TextStyles.defaultStyle.setColor(
-        ColorPalette.unratedColor,
+        ColorPalette.textColor,
       ),
     );
   }

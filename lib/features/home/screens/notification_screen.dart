@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:niflex/constants/app_styles.dart';
-import 'package:niflex/constants/asset_helpers.dart';
 import 'package:niflex/constants/color_constants.dart';
 import 'package:niflex/constants/dimensions_constants.dart';
-import 'package:niflex/constants/size_config.dart';
 import 'package:niflex/data/list_movies.dart';
-import 'package:niflex/features/home/widgets/item_movie.dart';
 import 'package:niflex/features/home/widgets/item_notification.dart';
-import 'package:niflex/models/movie.dart';
-import 'package:niflex/widgets/custom_button.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({
@@ -20,6 +14,18 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (MediaQuery.of(context).platformBrightness == Brightness.dark) {
+      ColorPalette.textColor = Colors.white;
+      ColorPalette.backgroundScaffoldColor = const Color(0xFF171A20);
+
+      print('dark');
+    } else {
+      ColorPalette.textColor = const Color(0xFF212121);
+      ColorPalette.backgroundScaffoldColor = Colors.white;
+
+      print('white');
+    }
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -27,7 +33,10 @@ class NotificationScreen extends StatelessWidget {
             pinned: true,
             leading: GestureDetector(
               onTap: () => Navigator.pop(context),
-              child: const Icon(Icons.arrow_back_ios_rounded),
+              child: Icon(
+                Icons.arrow_back_ios_rounded,
+                color: ColorPalette.textColor,
+              ),
             ),
             automaticallyImplyLeading: false,
             backgroundColor: ColorPalette.backgroundScaffoldColor,
@@ -44,11 +53,13 @@ class NotificationScreen extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(color: Colors.white),
+                    border: Border.all(
+                      color: ColorPalette.textColor,
+                    ),
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Icons.more_horiz,
-                    color: Colors.white,
+                    color: ColorPalette.textColor,
                   ),
                 ),
               ),

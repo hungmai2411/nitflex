@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:niflex/constants/app_styles.dart';
-import 'package:niflex/constants/asset_helpers.dart';
 import 'package:niflex/constants/color_constants.dart';
 import 'package:niflex/constants/dimensions_constants.dart';
 import 'package:niflex/constants/image_helpers.dart';
@@ -57,7 +53,7 @@ class ItemMovie extends StatelessWidget {
                   const SizedBox(width: kMinPadding),
                   Text(
                     movie.rating.toString(),
-                    style: TextStyles.defaultStyle.whiteTextColor,
+                    style: TextStyles.defaultStyle.setColor(Colors.white),
                   ),
                 ],
               ),

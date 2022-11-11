@@ -58,7 +58,7 @@ class ItemComment extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Icon(
+            Icon(
               Icons.favorite,
               color: ColorPalette.primaryColor,
             ),

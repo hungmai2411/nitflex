@@ -26,8 +26,8 @@ class BoxRating extends StatelessWidget {
                 TextStyles.defaultStyle.semibold.whiteTextColor.setTextSize(22),
           ),
           const SizedBox(height: kMinPadding),
-          const Divider(
-            color: ColorPalette.unratedColor,
+          Divider(
+            color: ColorPalette.textColor.withOpacity(0.4),
           ),
           IntrinsicHeight(
             child: Row(
@@ -69,7 +69,7 @@ class BoxRating extends StatelessWidget {
                 ),
                 const Spacer(),
                 VerticalDivider(
-                  color: ColorPalette.unratedColor.withOpacity(0.4),
+                  color: ColorPalette.textColor.withOpacity(0.4),
                   thickness: 1,
                 ),
                 const Spacer(),
@@ -94,8 +94,8 @@ class BoxRating extends StatelessWidget {
             ),
           ),
           const SizedBox(height: kMinPadding),
-          const Divider(
-            color: ColorPalette.unratedColor,
+          Divider(
+            color: ColorPalette.textColor.withOpacity(0.4),
           ),
           RatingBar(
             initialRating: 3,
@@ -103,17 +103,17 @@ class BoxRating extends StatelessWidget {
             allowHalfRating: true,
             itemCount: 5,
             ratingWidget: RatingWidget(
-              full: const Icon(
+              full: Icon(
                 Icons.star_rounded,
                 color: ColorPalette.primaryColor,
               ),
-              half: const Icon(
+              half: Icon(
                 Icons.star_half_rounded,
                 color: ColorPalette.primaryColor,
               ),
-              empty: const Icon(
+              empty: Icon(
                 Icons.star_border_rounded,
-                color: ColorPalette.unratedColor,
+                color: ColorPalette.textColor.withOpacity(0.3),
               ),
             ),
             itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
@@ -141,7 +141,7 @@ class BoxRating extends StatelessWidget {
               Expanded(
                 child: GestureDetector(
                   onTap: () {},
-                  child: const CustomButton(
+                  child: CustomButton(
                     width: null,
                     padding: kDefaultPadding,
                     color: ColorPalette.primaryColor,

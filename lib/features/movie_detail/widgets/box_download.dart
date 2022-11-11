@@ -10,6 +10,20 @@ class BoxDownload extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color textColorButtonHide = Colors.white;
+
+    if (MediaQuery.of(context).platformBrightness == Brightness.dark) {
+      ColorPalette.textColor = Colors.white;
+      print('dark');
+    } else {
+      textColorButtonHide = ColorPalette.primaryColor;
+      ColorPalette.textColor = const Color(0xFF212121);
+      ColorPalette.backgroundScaffoldColor = Colors.white;
+      ColorPalette.boxSearchColor = const Color(0xFFF5F5F4);
+      ColorPalette.buttonHide = ColorPalette.primaryColor.withOpacity(0.2);
+      print('white');
+    }
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -30,7 +44,7 @@ class BoxDownload extends StatelessWidget {
           style: TextStyles.defaultStyle.regular.whiteTextColor,
         ),
         const SizedBox(height: kMediumPadding),
-        const Divider(color: ColorPalette.dividerColor),
+        Divider(color: ColorPalette.textColor.withOpacity(0.3)),
         const SizedBox(height: kMediumPadding),
         Row(
           children: [
@@ -73,12 +87,13 @@ class BoxDownload extends StatelessWidget {
           onTap: () {
             Navigator.pop(context);
           },
-          child: const CustomButton(
-            color: Color(0xFF34373F),
+          child: CustomButton(
+            color: ColorPalette.buttonHide,
             icon: null,
             width: null,
             padding: kDefaultPadding,
             textButton: 'Hide',
+            textColor: textColorButtonHide,
           ),
         ),
       ],

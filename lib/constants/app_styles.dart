@@ -44,16 +44,12 @@ extension ExtendedTextStyle on TextStyle {
     return copyWith(fontWeight: FontWeight.w700);
   }
 
-  TextStyle get text1Color {
-    return copyWith(color: ColorPalette.text1Color);
-  }
-
   TextStyle get primaryTextColor {
     return copyWith(color: ColorPalette.primaryColor);
   }
 
   TextStyle get whiteTextColor {
-    return copyWith(color: Colors.white);
+    return copyWith(color: ColorPalette.textColor);
   }
 
   TextStyle get subTitleTextColor {
@@ -75,9 +71,8 @@ class TextStyles {
 
   BuildContext? context;
 
-  static const TextStyle defaultStyle = TextStyle(
+  static TextStyle defaultStyle = const TextStyle(
     fontSize: 14,
-    color: ColorPalette.text1Color,
     fontWeight: FontWeight.w400,
     height: 16 / 14,
   );

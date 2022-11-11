@@ -23,6 +23,17 @@ class ActorMoviesScreen extends StatelessWidget {
       );
     }
 
+    if (MediaQuery.of(context).platformBrightness == Brightness.dark) {
+      ColorPalette.textColor = Colors.white;
+      print('dark');
+    } else {
+      ColorPalette.textColor = const Color(0xFF212121);
+      ColorPalette.backgroundScaffoldColor = Colors.white;
+      ColorPalette.boxSearchColor = const Color(0xFFF5F5F4);
+      ColorPalette.buttonHide = ColorPalette.primaryColor.withOpacity(0.2);
+      print('white');
+    }
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -30,7 +41,10 @@ class ActorMoviesScreen extends StatelessWidget {
             pinned: true,
             leading: GestureDetector(
               onTap: () => Navigator.pop(context),
-              child: const Icon(Icons.arrow_back_ios_rounded),
+              child: Icon(
+                Icons.arrow_back_ios_rounded,
+                color: ColorPalette.textColor,
+              ),
             ),
             automaticallyImplyLeading: false,
             backgroundColor: ColorPalette.backgroundScaffoldColor,
@@ -39,14 +53,14 @@ class ActorMoviesScreen extends StatelessWidget {
               style: TextStyles.defaultStyle.semibold.whiteTextColor
                   .setTextSize(19),
             ),
-            actions: const [
+            actions: [
               Padding(
-                padding: EdgeInsets.only(
+                padding: const EdgeInsets.only(
                   right: kTopPadding,
                 ),
                 child: Icon(
                   Icons.search,
-                  color: Colors.white,
+                  color: ColorPalette.textColor,
                 ),
               ),
             ],

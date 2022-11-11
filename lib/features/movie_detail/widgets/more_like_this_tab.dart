@@ -10,24 +10,25 @@ class MoreLikeThisTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      padding: const EdgeInsets.only(top: kDefaultPadding),
+    return SliverGrid(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: kDefaultPadding,
         crossAxisSpacing: kDefaultPadding,
         childAspectRatio: 1,
       ),
-      itemBuilder: (BuildContext context, int index) {
-        return GestureDetector(
-          onTap: () {},
-          child: ItemMovie(
-            fit: StackFit.expand,
-            movie: movies[index],
-          ),
-        );
-      },
-      itemCount: movies.length,
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          return GestureDetector(
+            onTap: () {},
+            child: ItemMovie(
+              fit: StackFit.expand,
+              movie: movies[index],
+            ),
+          );
+        },
+        childCount: movies.length,
+      ),
     );
   }
 }

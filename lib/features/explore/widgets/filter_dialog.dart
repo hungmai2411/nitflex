@@ -35,13 +35,6 @@ class _FilterDialogState extends State<FilterDialog> {
     }
   }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    print('dispose');
-  }
-
   String categoryValue = '';
   String regionValue = '';
   String periodValue = '';
@@ -88,7 +81,7 @@ class _FilterDialogState extends State<FilterDialog> {
                 .setTextSize(20),
           ),
           const SizedBox(height: kMinPadding),
-          const Divider(
+          Divider(
             color: ColorPalette.unratedColor,
           ),
           const SizedBox(height: kMinPadding),
@@ -212,7 +205,7 @@ class _FilterDialogState extends State<FilterDialog> {
             ),
           ),
           const SizedBox(height: kItemPadding),
-          const Divider(
+          Divider(
             color: ColorPalette.unratedColor,
           ),
           const SizedBox(height: kItemPadding),
@@ -246,7 +239,7 @@ class _FilterDialogState extends State<FilterDialog> {
 
                   Navigator.pop(context, filters);
                 },
-                child: const CustomButton(
+                child: CustomButton(
                   padding: kDefaultPadding,
                   color: ColorPalette.primaryColor,
                   icon: null,

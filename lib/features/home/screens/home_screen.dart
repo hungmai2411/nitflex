@@ -19,6 +19,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (MediaQuery.of(context).platformBrightness == Brightness.dark) {
+      ColorPalette.textColor = Colors.white;
+    } else {
+      ColorPalette.textColor = const Color(0xFF212121);
+    }
+
     void navigateToTop10() {
       Navigator.pushNamed(
         context,
@@ -65,12 +71,15 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       Text(
                         'Wreck It Ralph 2',
-                        style: TextStyles.defaultStyle.whiteTextColor.bold
-                            .setTextSize(20),
+                        style: TextStyles.defaultStyle.bold
+                            .setTextSize(20)
+                            .setColor(Colors.white),
                       ),
                       Text(
                         'Anime, Happy,..',
-                        style: TextStyles.defaultStyle.whiteTextColor.medium
+                        style: TextStyles.defaultStyle
+                            .setColor(Colors.white)
+                            .medium
                             .setTextSize(15),
                       ),
                       const SizedBox(height: kItemPadding),
@@ -78,9 +87,9 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: () {},
-                            child: const CustomButton(
+                            child: CustomButton(
                               color: ColorPalette.primaryColor,
-                              icon: Icon(
+                              icon: const Icon(
                                 FontAwesomeIcons.play,
                                 color: Colors.white,
                               ),

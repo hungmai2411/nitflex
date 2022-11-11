@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:niflex/constants/app_styles.dart';
 import 'package:niflex/constants/color_constants.dart';
 import 'package:niflex/constants/dimensions_constants.dart';
@@ -48,6 +47,19 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (MediaQuery.of(context).platformBrightness == Brightness.dark) {
+      ColorPalette.textColor = Colors.white;
+      ColorPalette.backgroundScaffoldColor = const Color(0xFF171A20);
+      ColorPalette.boxSearchColor = const Color(0xFF1E222A);
+
+      print('dark');
+    } else {
+      ColorPalette.textColor = const Color(0xFF212121);
+      ColorPalette.backgroundScaffoldColor = Colors.white;
+      ColorPalette.boxSearchColor = const Color(0xFFF5F5F4);
+      print('white');
+    }
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -77,15 +89,22 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   ),
                   GestureDetector(
                     onTap: () async {
-                      final result = await showCupertinoModalBottomSheet(
+                      final result = await showModalBottomSheet(
                         context: context,
                         backgroundColor: Colors.transparent,
                         builder: (context) {
-                          return Scaffold(
-                              backgroundColor: const Color(0xFF1E222A),
-                              body: FilterDialog(
-                                filterResults: filterResults,
-                              ));
+                          return Container(
+                            height: 500,
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(30),
+                                  topRight: Radius.circular(30)),
+                              color: ColorPalette.backgroundScaffoldColor,
+                            ),
+                            child: FilterDialog(
+                              filterResults: filterResults,
+                            ),
+                          );
                         },
                       );
                       setState(() {
@@ -97,11 +116,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(kTopPadding),
-                        color: ColorPalette.primaryColor.withOpacity(0.3),
+                        color: ColorPalette.primaryColor.withOpacity(0.2),
                       ),
                       padding: const EdgeInsets.all(kItemPadding),
                       margin: const EdgeInsets.only(left: kItemPadding),
-                      child: const Icon(
+                      child: Icon(
                         FontAwesomeIcons.sliders,
                         color: ColorPalette.primaryColor,
                       ),
