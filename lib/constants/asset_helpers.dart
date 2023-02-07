@@ -17,6 +17,10 @@ mixin AssetHelper {
   static const String yahoo = 'assets/images/yahoo.png';
   static const String facebook = 'assets/images/facebook.png';
   static const String tiktok = 'assets/images/tiktok.png';
+  static const String netflixLogo = 'assets/images/netflix_logo.png';
+  static const String movaLogo = 'assets/images/logo.png';
+
+  static const String netflixSymbol = 'assets/images/netflix_symbol.png';
 
   static const String moviePoster = 'assets/images/movie_poster.png';
 }

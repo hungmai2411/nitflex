@@ -20,6 +20,14 @@ class ColorPalette {
     scaffoldBackgroundColor: Colors.white,
   );
 
+  static const profileColors = [
+    Colors.amber,
+    Colors.blue,
+    Colors.red,
+    Colors.green,
+    Colors.purple
+  ];
+
   // Hàm đổi giao diện theo các chủ đề.
   static void changeTheme(int themeCode) {
     switch (themeCode) {

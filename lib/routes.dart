@@ -5,6 +5,7 @@ import 'package:niflex/features/home/screens/top10_screen.dart';
 import 'package:niflex/features/movie_detail/screens/actor_movies.dart';
 import 'package:niflex/features/movie_detail/screens/comments_screen.dart';
 import 'package:niflex/features/movie_detail/screens/movie_detail_screen.dart';
+import 'package:niflex/features/profile/screens/profile_selection_screen.dart';
 import 'package:niflex/main_app.dart';
 import 'package:niflex/models/movie.dart';
 
@@ -12,6 +13,7 @@ final Map<String, WidgetBuilder> routes = {
   MainApp.routeName: (context) => const MainApp(),
   NotificationScreen.routeName: (context) => const NotificationScreen(),
   CommentsScreen.routeName: (context) => const CommentsScreen(),
+  ProfileSelectionScreen.routeName: (context) => const ProfileSelectionScreen(),
 };
 
 MaterialPageRoute<dynamic>? generateRoutes(RouteSettings settings) {

@@ -4,7 +4,6 @@ import 'package:niflex/constants/app_styles.dart';
 import 'package:niflex/constants/asset_helpers.dart';
 import 'package:niflex/constants/color_constants.dart';
 import 'package:niflex/constants/dimensions_constants.dart';
-import 'package:niflex/constants/size_config.dart';
 import 'package:niflex/data/list_movies.dart';
 import 'package:niflex/features/home/screens/notification_screen.dart';
 import 'package:niflex/features/home/widgets/item_movie.dart';
@@ -12,10 +11,36 @@ import 'package:niflex/features/home/screens/new_release_screen.dart';
 import 'package:niflex/features/home/screens/top10_screen.dart';
 import 'package:niflex/models/movie.dart';
 import 'package:niflex/widgets/custom_button.dart';
+import 'package:niflex/widgets/shimmer.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
   static const String routeName = '/home_screen';
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    displayShimmer();
+  }
+
+  void displayShimmer() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    await Future.delayed(const Duration(seconds: 2));
+
+    setState(() {
+      isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +177,7 @@ class HomeScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Top 10 Movies This Week',
+                        'Top Trending',
                         style: TextStyles.defaultStyle.bold.whiteTextColor
                             .setTextSize(18),
                       ),
@@ -169,18 +194,21 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 250,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      Movie movie = movies[index];
-                      return ItemMovie(
-                        margin: const EdgeInsets.only(left: kDefaultPadding),
-                        movie: movie,
-                      );
-                    },
-                  ),
+                  height: 220,
+                  child: isLoading
+                      ? shimmer
+                      : ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 5,
+                          itemBuilder: (context, index) {
+                            Movie movie = movies[index];
+                            return ItemMovie(
+                              margin:
+                                  const EdgeInsets.only(left: kDefaultPadding),
+                              movie: movie,
+                            );
+                          },
+                        ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(kDefaultPadding),
@@ -188,7 +216,7 @@ class HomeScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'New Releases',
+                        'Continue Watching',
                         style: TextStyles.defaultStyle.bold.whiteTextColor
                             .setTextSize(18),
                       ),
@@ -205,18 +233,99 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 250,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      Movie movie = movies[index];
-                      return ItemMovie(
-                        margin: const EdgeInsets.only(left: kDefaultPadding),
-                        movie: movie,
-                      );
-                    },
+                  height: 220,
+                  child: isLoading
+                      ? shimmer
+                      : ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 5,
+                          itemBuilder: (context, index) {
+                            Movie movie = movies[index];
+                            return ItemMovie(
+                              margin:
+                                  const EdgeInsets.only(left: kDefaultPadding),
+                              movie: movie,
+                            );
+                          },
+                        ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(kDefaultPadding),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Nitflex Original',
+                        style: TextStyles.defaultStyle.bold.whiteTextColor
+                            .setTextSize(18),
+                      ),
+                      GestureDetector(
+                        onTap: navigateToNewReleases,
+                        child: Text(
+                          'See All',
+                          style: TextStyles.defaultStyle.regular
+                              .setTextSize(16)
+                              .setColor(ColorPalette.primaryColor),
+                        ),
+                      ),
+                    ],
                   ),
+                ),
+                SizedBox(
+                  height: 220,
+                  child: isLoading
+                      ? shimmer
+                      : ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 5,
+                          itemBuilder: (context, index) {
+                            Movie movie = movies[index];
+                            return ItemMovie(
+                              margin:
+                                  const EdgeInsets.only(left: kDefaultPadding),
+                              movie: movie,
+                            );
+                          },
+                        ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(kDefaultPadding),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Top Rated Movie',
+                        style: TextStyles.defaultStyle.bold.whiteTextColor
+                            .setTextSize(18),
+                      ),
+                      GestureDetector(
+                        onTap: navigateToNewReleases,
+                        child: Text(
+                          'See All',
+                          style: TextStyles.defaultStyle.regular
+                              .setTextSize(16)
+                              .setColor(ColorPalette.primaryColor),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 220,
+                  child: isLoading
+                      ? shimmer
+                      : ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 5,
+                          itemBuilder: (context, index) {
+                            Movie movie = movies[index];
+                            return ItemMovie(
+                              margin:
+                                  const EdgeInsets.only(left: kDefaultPadding),
+                              movie: movie,
+                            );
+                          },
+                        ),
                 ),
               ],
             ),

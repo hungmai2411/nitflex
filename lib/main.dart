@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:niflex/constants/color_constants.dart';
 import 'package:niflex/constants/size_config.dart';
+import 'package:niflex/features/profile/screens/profile_selection_screen.dart';
 import 'package:niflex/main_app.dart';
 import 'package:niflex/routes.dart';
+import 'package:niflex/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
       home: Builder(
         builder: (context) {
           SizeConfig.init(context);
-          return const MainApp();
+          return const SplashScreen();
         },
       ),
     );

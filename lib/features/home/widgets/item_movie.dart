@@ -29,10 +29,8 @@ class ItemMovie extends StatelessWidget {
             borderRadius: BorderRadius.circular(
               kTopPadding,
             ),
-            child: ImageHelper.loadFromAsset(
-              movie.image,
-              fit: BoxFit.cover,
-            ),
+            child: ImageHelper.loadFromAsset(movie.image,
+                fit: BoxFit.cover, width: 110.0, height: 220.0),
           ),
           Positioned(
             left: kTopPadding,

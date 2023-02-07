@@ -32,16 +32,25 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+  flutter_launcher_icons: ^0.10.0
   flutter_rating_bar: ^4.0.1
   flutter_svg: ^1.1.6
   font_awesome_flutter: ^10.2.1
   percent_indicator: ^4.2.2
   salomon_bottom_bar: ^3.3.1
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  image_path: "assets/images/netflix_symbol.png" 
+  android: true
+  ios: true
+  # optionally, as transparency is not allowed on app store
+  # remove_alpha_ios: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
