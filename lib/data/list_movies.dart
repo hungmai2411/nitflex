@@ -10,6 +10,7 @@ List<Movie> movies = [
     dateTime: '24/11/2024',
     status: 'Update',
     numOfEpisode: '08 Episode',
+    price: 0.5,
   ),
   Movie(
     image: AssetHelper.anime2,
@@ -19,6 +20,7 @@ List<Movie> movies = [
     dateTime: '24/11/2024',
     status: 'New Release',
     numOfEpisode: '05 Episode',
+    price: 2.4,
   ),
   Movie(
     image: AssetHelper.anime3,
@@ -28,6 +30,7 @@ List<Movie> movies = [
     dateTime: '24/11/2024',
     status: 'Update',
     numOfEpisode: '',
+    price: 3.6,
   ),
   Movie(
     image: AssetHelper.anime4,
@@ -37,6 +40,7 @@ List<Movie> movies = [
     dateTime: '24/11/2024',
     status: 'New Release',
     numOfEpisode: '07 Episode',
+    price: 5.2,
   ),
   Movie(
     image: AssetHelper.anime5,
@@ -46,6 +50,7 @@ List<Movie> movies = [
     dateTime: '24/11/2024',
     status: 'Update',
     numOfEpisode: '08 Episode',
+    price: 2.0,
   ),
   Movie(
     image: AssetHelper.anime1,
@@ -55,6 +60,7 @@ List<Movie> movies = [
     dateTime: '24/11/2024',
     status: 'New Release',
     numOfEpisode: '08 Episode',
+    price: 3,
   ),
   Movie(
     image: AssetHelper.anime2,
@@ -64,6 +70,7 @@ List<Movie> movies = [
     dateTime: '24/11/2024',
     status: 'Update',
     numOfEpisode: '08 Episode',
+    price: 1.4,
   ),
   Movie(
     image: AssetHelper.anime3,
@@ -73,6 +80,7 @@ List<Movie> movies = [
     dateTime: '24/11/2024',
     status: 'Update',
     numOfEpisode: '08 Episode',
+    price: 0.5,
   ),
   Movie(
     image: AssetHelper.anime4,
@@ -82,6 +90,7 @@ List<Movie> movies = [
     dateTime: '24/11/2024',
     status: 'Update',
     numOfEpisode: '08 Episode',
+    price: 0.1,
   ),
   Movie(
     image: AssetHelper.anime5,
@@ -91,5 +100,6 @@ List<Movie> movies = [
     dateTime: '24/11/2024',
     status: 'Update',
     numOfEpisode: '08 Episode',
+    price: 1.7,
   ),
 ];

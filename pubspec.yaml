@@ -29,6 +29,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  another_flushbar: ^1.12.29
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
@@ -37,6 +38,7 @@ dependencies:
   flutter_svg: ^1.1.6
   font_awesome_flutter: ^10.2.1
   percent_indicator: ^4.2.2
+  provider: ^6.0.5
   salomon_bottom_bar: ^3.3.1
   shimmer: ^2.0.0
 
@@ -46,7 +48,7 @@ dev_dependencies:
     sdk: flutter
 
 flutter_icons:
-  image_path: "assets/images/netflix_symbol.png" 
+  image_path: "assets/images/netflix_symbol.png"
   android: true
   ios: true
   # optionally, as transparency is not allowed on app store

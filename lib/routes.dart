@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:niflex/features/cart/screens/cart_screen.dart';
+import 'package:niflex/features/cart/screens/choose_method_screen.dart';
 import 'package:niflex/features/home/screens/new_release_screen.dart';
 import 'package:niflex/features/home/screens/notification_screen.dart';
 import 'package:niflex/features/home/screens/top10_screen.dart';
@@ -6,6 +8,7 @@ import 'package:niflex/features/movie_detail/screens/actor_movies.dart';
 import 'package:niflex/features/movie_detail/screens/comments_screen.dart';
 import 'package:niflex/features/movie_detail/screens/movie_detail_screen.dart';
 import 'package:niflex/features/profile/screens/profile_selection_screen.dart';
+import 'package:niflex/features/profile/screens/subcribe_screen.dart';
 import 'package:niflex/main_app.dart';
 import 'package:niflex/models/movie.dart';
 
@@ -14,6 +17,9 @@ final Map<String, WidgetBuilder> routes = {
   NotificationScreen.routeName: (context) => const NotificationScreen(),
   CommentsScreen.routeName: (context) => const CommentsScreen(),
   ProfileSelectionScreen.routeName: (context) => const ProfileSelectionScreen(),
+  CartScreen.routeName: (context) => const CartScreen(),
+  ChooseMethodScreen.routeName: (context) => ChooseMethodScreen(),
+  SubcribeScreen.routeName: (context) => const SubcribeScreen(),
 };
 
 MaterialPageRoute<dynamic>? generateRoutes(RouteSettings settings) {

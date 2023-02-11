@@ -7,6 +7,8 @@ class Movie {
   final String dateTime;
   final String status;
   final String numOfEpisode;
+  final double price;
+  bool isAdded;
 
   Movie({
     required this.image,
@@ -16,5 +18,7 @@ class Movie {
     required this.dateTime,
     required this.status,
     required this.numOfEpisode,
+    required this.price,
+    this.isAdded = false,
   });
 }

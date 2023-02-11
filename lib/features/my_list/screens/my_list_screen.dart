@@ -6,12 +6,15 @@ import 'package:niflex/data/list_movies.dart';
 import 'package:niflex/features/home/widgets/item_movie.dart';
 import 'package:niflex/features/movie_detail/screens/movie_detail_screen.dart';
 import 'package:niflex/models/movie.dart';
+import 'package:niflex/providers/my_list_provider.dart';
+import 'package:provider/provider.dart';
 
 class MyListScreen extends StatelessWidget {
   const MyListScreen({super.key});
   static const String routeName = '/my_list_screen';
   @override
   Widget build(BuildContext context) {
+    List<Movie> movieList = context.watch<MyListProvider>().movies;
     void navigateToMovieDetailScreen(Movie movie) {
       Navigator.pushNamed(
         context,
@@ -73,14 +76,14 @@ class MyListScreen extends StatelessWidget {
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
                   return GestureDetector(
-                    onTap: () => navigateToMovieDetailScreen(movies[index]),
+                    onTap: () => navigateToMovieDetailScreen(movieList[index]),
                     child: ItemMovie(
                       fit: StackFit.expand,
-                      movie: movies[index],
+                      movie: movieList[index],
                     ),
                   );
                 },
-                childCount: movies.length,
+                childCount: movieList.length,
               ),
             ),
           )

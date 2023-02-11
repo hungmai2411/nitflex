@@ -16,8 +16,12 @@ import 'package:niflex/features/movie_detail/widgets/more_like_this_tab.dart';
 import 'package:niflex/features/movie_detail/widgets/trailer_tab.dart';
 import 'package:niflex/models/actor.dart';
 import 'package:niflex/models/movie.dart';
+import 'package:niflex/providers/cart_provider.dart';
+import 'package:niflex/providers/my_list_provider.dart';
+import 'package:niflex/utils.dart';
 import 'package:niflex/widgets/custom_button.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:provider/provider.dart';
 
 class MovieDetailScreen extends StatefulWidget {
   final Movie movie;
@@ -36,7 +40,7 @@ class MovieDetailScreen extends StatefulWidget {
 class _MovieDetailScreenState extends State<MovieDetailScreen>
     with SingleTickerProviderStateMixin {
   int tabIndex = 0;
-
+  bool isAdded = false;
   late final TabController _tabController =
       TabController(length: 3, vsync: this);
 
@@ -58,7 +62,6 @@ class _MovieDetailScreenState extends State<MovieDetailScreen>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _tabController.dispose();
   }
@@ -128,7 +131,12 @@ class _MovieDetailScreenState extends State<MovieDetailScreen>
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.all(kDefaultPadding),
+              padding: const EdgeInsets.fromLTRB(
+                kDefaultPadding,
+                kDefaultPadding,
+                kDefaultPadding,
+                kMinPadding,
+              ),
               child: Row(
                 children: [
                   // name movie
@@ -138,10 +146,59 @@ class _MovieDetailScreenState extends State<MovieDetailScreen>
                         .setTextSize(18),
                   ),
                   const Spacer(),
-                  Icon(
-                    Icons.bookmark_outline_rounded,
-                    color: ColorPalette.textColor,
+                  GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(kItemPadding),
+                              ),
+                            ),
+                            backgroundColor:
+                                ColorPalette.backgroundScaffoldColor,
+                            content: const BoxDownload(),
+                          );
+                        },
+                      );
+                    },
+                    child: const Icon(
+                      Icons.download,
+                      color: Colors.white,
+                    ),
                   ),
+                  const SizedBox(width: kItemPadding),
+                  widget.movie.isAdded
+                      ? GestureDetector(
+                          onTap: () {
+                            context
+                                .read<MyListProvider>()
+                                .removeMovie(widget.movie);
+                            setState(() {
+                              widget.movie.isAdded = false;
+                            });
+                          },
+                          child: Icon(
+                            Icons.bookmark,
+                            color: ColorPalette.primaryColor,
+                          ),
+                        )
+                      : GestureDetector(
+                          onTap: () {
+                            context
+                                .read<MyListProvider>()
+                                .addMovie(widget.movie);
+                            setState(() {
+                              widget.movie.isAdded = true;
+                            });
+                          },
+                          child: Icon(
+                            Icons.bookmark_outline_rounded,
+                            color: ColorPalette.textColor,
+                          ),
+                        ),
                   const SizedBox(width: kItemPadding),
                   GestureDetector(
                     onTap: () {
@@ -169,6 +226,17 @@ class _MovieDetailScreenState extends State<MovieDetailScreen>
                     ),
                   ),
                 ],
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+              child: Text(
+                '${widget.movie.price} \$',
+                style: TextStyles.defaultStyle.semibold
+                    .setTextSize(18)
+                    .whiteTextColor,
               ),
             ),
           ),
@@ -268,21 +336,8 @@ class _MovieDetailScreenState extends State<MovieDetailScreen>
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(kItemPadding),
-                                ),
-                              ),
-                              backgroundColor:
-                                  ColorPalette.backgroundScaffoldColor,
-                              content: const BoxDownload(),
-                            );
-                          },
-                        );
+                        context.read<CartProvider>().addToCart(widget.movie);
+                        showSnackBar(context, 'Add to cart successfully');
                       },
                       child: CustomButton(
                         color: ColorPalette.backgroundScaffoldColor,
@@ -296,14 +351,14 @@ class _MovieDetailScreenState extends State<MovieDetailScreen>
                           ),
                           child: Center(
                             child: Icon(
-                              FontAwesomeIcons.download,
+                              FontAwesomeIcons.cartPlus,
                               size: kDefaultPadding,
                               color: ColorPalette.primaryColor,
                             ),
                           ),
                         ),
                         textColor: ColorPalette.primaryColor,
-                        textButton: 'Download',
+                        textButton: 'Add to Cart',
                       ),
                     ),
                   ),

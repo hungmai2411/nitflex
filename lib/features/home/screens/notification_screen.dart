@@ -4,6 +4,9 @@ import 'package:niflex/constants/color_constants.dart';
 import 'package:niflex/constants/dimensions_constants.dart';
 import 'package:niflex/data/list_movies.dart';
 import 'package:niflex/features/home/widgets/item_notification.dart';
+import 'package:niflex/features/home/widgets/item_voucher.dart';
+import 'package:niflex/providers/notification_provider.dart';
+import 'package:provider/provider.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({
@@ -14,6 +17,7 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> vouchers = context.watch<NotificationProvider>().vouchers;
     if (MediaQuery.of(context).platformBrightness == Brightness.dark) {
       ColorPalette.textColor = Colors.white;
       ColorPalette.backgroundScaffoldColor = const Color(0xFF171A20);
@@ -71,12 +75,11 @@ class NotificationScreen extends StatelessWidget {
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
-                  return ItemNotification(
-                    movie: movies[index],
-                    margin: const EdgeInsets.only(bottom: kDefaultPadding),
+                  return const ItemVoucher(
+                    margin: EdgeInsets.only(bottom: kDefaultPadding),
                   );
                 },
-                childCount: movies.length,
+                childCount: vouchers.length,
               ),
             ),
           )

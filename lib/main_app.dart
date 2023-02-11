@@ -4,6 +4,7 @@ import 'package:niflex/constants/dimensions_constants.dart';
 import 'package:niflex/features/explore/screens/explore_screen.dart';
 import 'package:niflex/features/home/screens/home_screen.dart';
 import 'package:niflex/features/my_list/screens/my_list_screen.dart';
+import 'package:niflex/features/profile/screens/profile_screen.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -72,11 +73,11 @@ class _MainAppState extends State<MainApp> {
       ),
       body: IndexedStack(
         index: _currentIndex,
-        children: [
-          const HomeScreen(),
-          const ExploreScreen(),
-          const MyListScreen(),
-          Container(),
+        children: const [
+          HomeScreen(),
+          ExploreScreen(),
+          MyListScreen(),
+          ProfileScreen(),
         ],
       ),
     );

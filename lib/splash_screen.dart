@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Center(
         child: Image.asset(
-          AssetHelper.netflixSymbol,
+          AssetHelper.movaLogo,
           width: 110,
           height: 220,
         ),

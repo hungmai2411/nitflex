@@ -2,12 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:niflex/constants/app_styles.dart';
 import 'package:niflex/constants/asset_helpers.dart';
 import 'package:niflex/constants/color_constants.dart';
+import 'package:niflex/features/profile/widgets/item_box.dart';
 import 'package:niflex/features/profile/widgets/profile_icon.dart';
+import 'package:niflex/features/profile/widgets/success_dialog.dart';
 import 'package:niflex/main_app.dart';
+import 'package:niflex/providers/notification_provider.dart';
+import 'package:provider/provider.dart';
 
-class ProfileSelectionScreen extends StatelessWidget {
+class ProfileSelectionScreen extends StatefulWidget {
   const ProfileSelectionScreen({super.key});
   static const String routeName = '/profile_selection';
+
+  @override
+  State<ProfileSelectionScreen> createState() => _ProfileSelectionScreenState();
+}
+
+class _ProfileSelectionScreenState extends State<ProfileSelectionScreen> {
+  int selectedIndex = -1;
+
   @override
   Widget build(BuildContext context) {
     if (MediaQuery.of(context).platformBrightness == Brightness.dark) {
@@ -39,7 +51,7 @@ class ProfileSelectionScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'Who\'s Watching?',
+            'Check In',
             style: TextStyles.defaultStyle.medium
                 .setTextSize(18)
                 .setColor(ColorPalette.textColor),
@@ -54,34 +66,30 @@ class ProfileSelectionScreen extends StatelessWidget {
                 crossAxisSpacing: 8.0,
                 crossAxisCount: 2,
               ),
-              itemCount: 5,
+              itemCount: 8,
               itemBuilder: (BuildContext ctx, index) {
                 return GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, MainApp.routeName);
+                  onTap: () async {
+                    //Navigator.pushNamed(context, MainApp.routeName);
                   },
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: AspectRatio(
-                            aspectRatio: 1,
-                            child: ProfileIcon(
-                              color: ColorPalette.profileColors[index],
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 8.0),
-                      Text(
-                        'Profile ${index + 1}',
-                        style: TextStyles.defaultStyle.medium
-                            .setColor(ColorPalette.textColor),
-                      )
-                    ],
+                  child: ItemBox(
+                    isPicked: index == selectedIndex ? true : false,
+                    index: index,
+                    callback: (p0) async {
+                      setState(() {
+                        selectedIndex = p0;
+                      });
+                      context.read<NotificationProvider>().addVoucher('OKOKOK');
+
+                      await showDialog(
+                        context: context,
+                        builder: (_) {
+                          return const AppDialog(
+                            child: BuySuccessDialog(),
+                          );
+                        },
+                      );
+                    },
                   ),
                 );
               }),

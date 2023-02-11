@@ -5,13 +5,17 @@ import 'package:niflex/constants/asset_helpers.dart';
 import 'package:niflex/constants/color_constants.dart';
 import 'package:niflex/constants/dimensions_constants.dart';
 import 'package:niflex/data/list_movies.dart';
+import 'package:niflex/features/cart/screens/cart_screen.dart';
 import 'package:niflex/features/home/screens/notification_screen.dart';
 import 'package:niflex/features/home/widgets/item_movie.dart';
 import 'package:niflex/features/home/screens/new_release_screen.dart';
 import 'package:niflex/features/home/screens/top10_screen.dart';
 import 'package:niflex/models/movie.dart';
+import 'package:niflex/providers/cart_provider.dart';
+import 'package:niflex/providers/notification_provider.dart';
 import 'package:niflex/widgets/custom_button.dart';
 import 'package:niflex/widgets/shimmer.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -62,6 +66,13 @@ class _HomeScreenState extends State<HomeScreen> {
       Navigator.pushNamed(
         context,
         NotificationScreen.routeName,
+      );
+    }
+
+    void navigateToCartScreen() {
+      Navigator.pushNamed(
+        context,
+        CartScreen.routeName,
       );
     }
 
@@ -146,18 +157,56 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Row(
                       children: [
                         GestureDetector(
-                          onTap: navigateToNotificationScreen,
-                          child: const Icon(
-                            FontAwesomeIcons.magnifyingGlass,
-                            color: Colors.white,
+                          onTap: navigateToCartScreen,
+                          child: Stack(
+                            alignment: Alignment.topRight,
+                            children: [
+                              const Icon(
+                                Icons.shopping_cart_outlined,
+                                color: Colors.white,
+                              ),
+                              if (context
+                                  .watch<CartProvider>()
+                                  .movies
+                                  .isNotEmpty)
+                                Positioned(
+                                  child: Container(
+                                    width: kTopPadding,
+                                    height: kTopPadding,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: ColorPalette.primaryColor,
+                                    ),
+                                  ),
+                                ),
+                            ],
                           ),
                         ),
                         const SizedBox(width: kDefaultPadding),
                         GestureDetector(
                           onTap: navigateToNotificationScreen,
-                          child: const Icon(
-                            FontAwesomeIcons.bell,
-                            color: Colors.white,
+                          child: Stack(
+                            alignment: Alignment.topRight,
+                            children: [
+                              const Icon(
+                                FontAwesomeIcons.bell,
+                                color: Colors.white,
+                              ),
+                              if (context
+                                  .watch<NotificationProvider>()
+                                  .vouchers
+                                  .isNotEmpty)
+                                Positioned(
+                                  child: Container(
+                                    width: kTopPadding,
+                                    height: kTopPadding,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: ColorPalette.primaryColor,
+                                    ),
+                                  ),
+                                ),
+                            ],
                           ),
                         ),
                       ],

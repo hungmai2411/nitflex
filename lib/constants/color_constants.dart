@@ -8,7 +8,8 @@ class ColorPalette {
   static Color textColor = Colors.white;
   static Color dividerColor = const Color(0xFFE5E7EB);
   static Color subTitleColor = const Color(0xFF838383);
-  static Color backgroundScaffoldColor = const Color(0xFF171A20);
+  static Color backgroundScaffoldColor = const Color(0xFF20232A);
+  static Color boxColor = const Color(0xFF2B2F3A);
   static Color boxSearchColor = const Color(0xFF1E222A);
   static Color buttonHide = const Color(0xFF34373F);
 
